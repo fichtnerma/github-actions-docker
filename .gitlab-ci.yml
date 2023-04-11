@@ -1,5 +1,6 @@
 stages:
   - build
+  - publish
 default:
   interruptible: false
   image: docker:20.10
@@ -16,7 +17,10 @@ build-master:
   tags: 
     - docker
   stage: build
+
+docker:
+  stage: publish
   script:
   - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-  - docker build -t app .
-  - docker push app
+  - docker build -t test-app .
+  - docker push $CI_REGISTRY_IMAGE
