@@ -17,6 +17,8 @@ build-master:
   tags: 
     - docker
   stage: build
+  script: 
+    - echo "Build"
 
 docker:
   stage: publish
