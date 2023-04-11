@@ -17,7 +17,7 @@ services:
     depends_on:
       - db
     environment:
-      DB_HOST: db
+      DB_HOST: localhost
       DB_NAME: todos
       DB_USER: todos
       DB_PASSWORD: password
