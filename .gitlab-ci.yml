@@ -1,3 +1,5 @@
+stages:
+  - build
 default:
   interruptible: false
   image: docker:20.10
