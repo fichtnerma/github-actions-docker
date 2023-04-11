@@ -23,6 +23,6 @@ build-master:
 docker:
   stage: publish
   script:
-    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD $$CI_REGISTRY
+    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD $CI_REGISTRY
     - docker build -t test-app .
     - docker push $CI_REGISTRY_IMAGE
