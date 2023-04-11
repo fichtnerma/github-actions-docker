@@ -1,4 +1,7 @@
-image: docker:20.10
+default:
+  interruptible: false
+  image: docker:20.10
+
 variables:
   DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
@@ -6,10 +9,12 @@ services:
   - docker:20.10-dind
 
 build-master:
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   tags: 
     - docker
   stage: build
   script:
-  - docker build -t myimage .
-  only:
-  - master
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker build -t app .
+  - docker push app
